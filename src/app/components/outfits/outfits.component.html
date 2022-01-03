@@ -1,0 +1,78 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+          menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+          close
+      </mat-icon>
+  </button> Clothing Image Recognition
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+        <img class="avatar mat-elevation-z8" src="https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659651_960_720.png" />
+
+        <h4 class="name">Dan Smith</h4>
+        <p class="designation">Fashion Designer</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/home">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/outfits">
+          <mat-icon>person</mat-icon>
+          <span>Outfits</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <mat-icon>info</mat-icon>
+            <span>About app</span>
+        </button>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="row">
+            <div style="margin-left: 10%; margin-top: 1%;">
+                <h4>Clothing types (df2)</h4>
+                <!-- Bind the filterBy value to the buttons -->
+                <button mat-button [class.active]="filterBy=='all'" (click)="filterBy='all'">All</button>
+                <button mat-button [class.active]="filterBy=='short sleeve top'" (click)="filterBy='short sleeve top'">short sleeve top</button>
+                <button mat-button [class.active]="filterBy=='vest'" (click)="filterBy='vest'">vest</button>
+                <button mat-button [class.active]="filterBy=='skirt'" (click)="filterBy='skirt'">skirt</button>
+                <button mat-button [class.active]="filterBy=='trousers'" (click)="filterBy='trousers'">trousers</button>
+                <button mat-button [class.active]="filterBy=='vest dress'" (click)="filterBy='vest dress'">vest dress</button>
+                <button mat-button [class.active]="filterBy=='sling dress'" (click)="filterBy='sksling dressirt'">sling dress</button>
+                <button mat-button [class.active]="filterBy=='shorts'" (click)="filterBy='shorts'">shorts</button>
+                <button mat-button [class.active]="filterBy=='sling'" (click)="filterBy='sling'">sling</button>
+                <button mat-button [class.active]="filterBy=='skirt'" (click)="filterBy='skirt'">skirt</button>
+                <button mat-button [class.active]="filterBy=='short sleeve outwear'" (click)="filterBy='short sleeve outwear'">short sleeve outwear</button>
+                <button mat-button [class.active]="filterBy=='long sleeve outwear'" (click)="filterBy='long sleeve outwear'">long sleeve outwear</button>
+            </div>
+            <div style="margin-left: 10%; margin-top: 1%;">
+                <h4>Brands</h4>
+                <!-- Bind the filterBy value to the buttons -->
+                <button mat-button [class.active]="filterBy=='all'" (click)="filterBy='all'">All</button>
+                <button mat-button [class.active]="filterBy=='adidas'" (click)="filterBy='adidas'">adidas</button>
+                <button mat-button [class.active]="filterBy=='nike'" (click)="filterBy='nike'">nike</button>
+                <button mat-button [class.active]="filterBy=='under armour'" (click)="filterBy='under armour'">under armour</button>
+                <button mat-button [class.active]="filterBy=='puma'" (click)="filterBy='puma'">puma</button>
+            </div>
+            <ul id="thumbnailsList">
+                <!-- List out the images -->
+                <li *ngFor="let image of (visibleImages) | async | imageFilter:filterBy">
+                    <a [routerLink]="['/image', image.id]">
+                        <img src="{{image.file_path}}" class="tn" width="200" height="250">
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
