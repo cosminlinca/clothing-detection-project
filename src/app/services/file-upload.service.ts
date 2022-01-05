@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileUploadService {
-  private baseUrl = 'https://95.77.254.10:5000';
+  private baseUrl = 'https://clothing-detection-p368-heroku.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
